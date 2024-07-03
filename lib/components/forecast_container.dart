@@ -24,7 +24,7 @@ class ForecastContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Next 5 Days Forecast',
+              'Next 24  Forecast',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -36,12 +36,9 @@ class ForecastContainer extends StatelessWidget {
               itemCount: forecasts.length,
               itemBuilder: (context, index) {
                 WeatherForecastModel forecast = forecasts[index];
-
-                // Print statement to check if dates are correct
-                print('Forecast Date: ${forecast.date}');
-
-                String formattedDate =
-                    DateFormat('dd/MM/yyyy').format(forecast.date);
+                // Format the time to display hours and minutes
+                String formattedTime =
+                    DateFormat.jm().format(forecast.date); // Example: 2:30 AM
 
                 return ListTile(
                   leading: Image.network(
@@ -49,7 +46,7 @@ class ForecastContainer extends StatelessWidget {
                     width: 50,
                     height: 50,
                   ),
-                  title: Text(formattedDate),
+                  title: Text(formattedTime), // Display formatted time here
                   subtitle:
                       Text('${forecast.temperature}°C - ${forecast.condition}'),
                 );

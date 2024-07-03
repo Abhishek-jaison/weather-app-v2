@@ -53,7 +53,7 @@ List<WeatherForecastModel> _parseForecastData(dynamic forecastData) {
     if (forecastData['list'] != null) {
       for (var forecast in forecastData['list']) {
         DateTime date = DateTime.fromMillisecondsSinceEpoch(forecast['dt'] * 1000);
-        double temperature = forecast['main']['temp'];
+        double temperature = forecast['main']['temp'].toDouble(); // Convert to double
         String condition = forecast['weather'][0]['description'];
         String icon = forecast['weather'][0]['icon'];
 
@@ -72,6 +72,7 @@ List<WeatherForecastModel> _parseForecastData(dynamic forecastData) {
 
   return forecasts;
 }
+
 
 
 
