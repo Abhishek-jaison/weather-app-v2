@@ -12,9 +12,11 @@ class WeatherModel with ChangeNotifier {
   double minTemp; // New field for minimum temperature
   double maxTemp; 
   double feelslike;
+  List<WeatherForecastModel> forecast;
 
 
   WeatherModel({
+    required this.forecast,
     required this.feelslike,
     required this.minTemp,
     required this.maxTemp,
@@ -38,5 +40,19 @@ class WeatherModel with ChangeNotifier {
       return "Temperature feels as \nexpected";
     }
   }
+  
 }
+class WeatherForecastModel {
+  DateTime date;
+  double temperature;
+  String condition;
+  String icon;
 
+  WeatherForecastModel({
+    required this.date,
+    required this.temperature,
+    required this.condition,
+    required this.icon,
+  });
+
+}

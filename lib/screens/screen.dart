@@ -1,5 +1,7 @@
+//lib/screens/screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:new_weather_app/components/forecast_container.dart';
 import 'package:new_weather_app/components/humidity.dart';
 import 'package:new_weather_app/components/humidity_container.dart';
 import 'package:new_weather_app/components/temperature_container.dart';
@@ -14,7 +16,7 @@ class WeatherDetailsScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     final weatherProvider = Provider.of<WeatherProvider>(context);
     final weather = weatherProvider.weather;
-    // Format current date to display only the date part
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       body: weatherProvider.loading
@@ -23,54 +25,32 @@ class WeatherDetailsScreens extends StatelessWidget {
               ? Center(child: Text(weatherProvider.errorMessage!))
               : weather == null
                   ? Center(child: Text('No data'))
-                  : Padding(
-                      padding:
-                          const EdgeInsets.only(top: 30, left: 30, right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          
-                          
-                          //returns the top bar with the location
-                          const TopBar(),
-                          const SizedBox(height: 20),
-
-                          
-                          
-                          //returns the current temperature and related deatails
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: TemperatureContainer(),
-                          ),
-                          const SizedBox(
-                            height: 25,
-                          ),
-
-                          
-                          
-                          //returns the feels like temperature
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: HumidityContainer(),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-
-                          
-                          
-                          //returns the wind speed and humidity level
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              WindSpeed(),
-                              Padding(
-                                padding: EdgeInsets.only(right: 20),
-                                child: Humidity(),
-                              ),
-                            ],
-                          )
-                        ],
+                  : SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TopBar(),
+                            SizedBox(height: 20),
+                            TemperatureContainer(),
+                            SizedBox(height: 25),
+                            HumidityContainer(),
+                            SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                WindSpeed(),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 0),
+                                  child: Humidity(),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20),
+                            ForecastContainer(),
+                          ],
+                        ),
                       ),
                     ),
     );

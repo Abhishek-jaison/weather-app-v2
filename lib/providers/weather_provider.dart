@@ -20,20 +20,23 @@ class WeatherProvider with ChangeNotifier {
   notifyListeners();
 
   try {
-    final data = await _weatherService.fetchWeather(city);
+    final weatherData = await _weatherService.fetchWeather(city);
+    final forecastData = await _weatherService.fetchForecast(city);
+
     _weather = WeatherModel(
-      city: data['name'],
-      temperature: data['main']['temp'],
-      condition: data['weather'][0]['description'],
-      icon: data['weather'][0]['icon'],
-      humidity: data['main']['humidity'],
-      windSpeed: data['wind']['speed'],
+      city: weatherData['name'],
+      temperature: weatherData['main']['temp'],
+      condition: weatherData['weather'][0]['description'],
+      icon: weatherData['weather'][0]['icon'],
+      humidity: weatherData['main']['humidity'],
+      windSpeed: weatherData['wind']['speed'],
       date: DateTime.now(),
-      minTemp: data['main']['temp_min'], // Example: Adjust based on your API response
-      maxTemp: data['main']['temp_max'],
-      feelslike: data['main']['feels_like'],
-    
+      minTemp: weatherData['main']['temp_min'],
+      maxTemp: weatherData['main']['temp_max'],
+      feelslike: weatherData['main']['feels_like'],
+      forecast: _parseForecastData(forecastData),
     );
+
     _saveLastSearchedCity(city);
   } catch (e) {
     _errorMessage = e.toString();
@@ -42,6 +45,35 @@ class WeatherProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+List<WeatherForecastModel> _parseForecastData(dynamic forecastData) {
+  List<WeatherForecastModel> forecasts = [];
+
+  try {
+    if (forecastData['list'] != null) {
+      for (var forecast in forecastData['list']) {
+        DateTime date = DateTime.fromMillisecondsSinceEpoch(forecast['dt'] * 1000);
+        double temperature = forecast['main']['temp'];
+        String condition = forecast['weather'][0]['description'];
+        String icon = forecast['weather'][0]['icon'];
+
+        forecasts.add(WeatherForecastModel(
+          date: date,
+          temperature: temperature,
+          condition: condition,
+          icon: icon,
+        ));
+      }
+    }
+  } catch (e) {
+    print('Error parsing forecast data: $e');
+    // Handle error gracefully, e.g., return empty list or throw specific exception
+  }
+
+  return forecasts;
+}
+
+
 
 void _saveLastSearchedCity(String city) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
