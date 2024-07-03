@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:new_weather_app/models/weather_model.dart';
 
 class WeatherService {
   static const String _apiKey = '4615a528b89bb02e803efe9b39b333e8';
@@ -26,4 +27,6 @@ class WeatherService {
     throw Exception('Failed to load forecast data: ${response.statusCode}');
   }
   }
+
+  
 }

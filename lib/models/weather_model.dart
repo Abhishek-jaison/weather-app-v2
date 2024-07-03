@@ -15,7 +15,9 @@ class WeatherModel with ChangeNotifier {
   List<WeatherForecastModel> forecast;
 
 
+
   WeatherModel({
+   
     required this.forecast,
     required this.feelslike,
     required this.minTemp,

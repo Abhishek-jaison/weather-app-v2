@@ -1,4 +1,6 @@
 // lib/providers/weather_provider.dart
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:new_weather_app/models/weather_model.dart';
 import 'package:new_weather_app/services/weather_services.dart';
@@ -24,6 +26,7 @@ class WeatherProvider with ChangeNotifier {
     final forecastData = await _weatherService.fetchForecast(city);
 
     _weather = WeatherModel(
+      
       city: weatherData['name'],
       temperature: weatherData['main']['temp'],
       condition: weatherData['weather'][0]['description'],

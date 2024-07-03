@@ -24,7 +24,7 @@ class ForecastContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Next 24  Forecast',
+              "Next 12 Hour's Forecast",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -33,7 +33,7 @@ class ForecastContainer extends StatelessWidget {
             // SizedBox(height: 10),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: forecasts.length,
+              itemCount: 10,
               itemBuilder: (context, index) {
                 WeatherForecastModel forecast = forecasts[index];
                 // Format the time to display hours and minutes

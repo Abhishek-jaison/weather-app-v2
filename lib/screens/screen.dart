@@ -12,10 +12,14 @@ import 'package:provider/provider.dart';
 import 'package:new_weather_app/providers/weather_provider.dart';
 
 class WeatherDetailsScreens extends StatelessWidget {
+  
+  
   @override
   Widget build(BuildContext context) {
     final weatherProvider = Provider.of<WeatherProvider>(context);
     final weather = weatherProvider.weather;
+  
+    
 
     return Scaffold(
       backgroundColor: Colors.grey[900],
