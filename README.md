@@ -7,7 +7,7 @@ run the application on your andriod emulator
 you are all set to go..
 
 
-![Screenshot 2024-07-03 234806](https://github.com/Abhishek-jaison/weather-app-v2/assets/128037906/97ed831f-20c5-433e-acd7-7fb4cf47000b)
+![Screenshot_20240704_141717](https://github.com/Abhishek-jaison/weather-app-v2/assets/128037906/af85f0eb-e741-4376-bd99-dc9f971e2483)
 
 ## Getting Started
 
