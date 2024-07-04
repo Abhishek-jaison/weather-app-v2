@@ -33,7 +33,7 @@ class ForecastContainer extends StatelessWidget {
             // SizedBox(height: 10),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: 10,
+              itemCount: 9,
               itemBuilder: (context, index) {
                 WeatherForecastModel forecast = forecasts[index];
                 // Format the time to display hours and minutes

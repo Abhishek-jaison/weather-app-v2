@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:new_weather_app/screens/screen.dart';
 import 'package:provider/provider.dart';
 import 'package:new_weather_app/providers/weather_provider.dart';
-import 'package:new_weather_app/screens/weather_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
