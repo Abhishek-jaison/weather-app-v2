@@ -13,6 +13,7 @@ class WeatherModel with ChangeNotifier {
   double maxTemp; 
   double feelslike;
   List<WeatherForecastModel> forecast;
+ 
 
 
 

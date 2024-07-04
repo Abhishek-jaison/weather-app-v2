@@ -24,7 +24,7 @@ class ForecastContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Next 12 Hour's Forecast",
+              "Next 24 Hour's Forecast",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

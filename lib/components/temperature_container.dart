@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:lottie/lottie.dart'; // Add this import
 import 'package:provider/provider.dart';
 import 'package:new_weather_app/providers/weather_provider.dart';
 import 'package:intl/intl.dart';
 
 class TemperatureContainer extends StatelessWidget {
   TemperatureContainer({super.key});
-  String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  String formattedDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class TemperatureContainer extends StatelessWidget {
     final weather = weatherProvider.weather;
 
     // Format current date to display only the date part
-    String formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    String formattedDate = DateFormat('dd-MM-yyyy').format(DateTime.now());
 
     if (weather == null) {
       return Center(child: CircularProgressIndicator());
@@ -45,49 +45,86 @@ class TemperatureContainer extends StatelessWidget {
       // padding: EdgeInsets.all(20),
       child: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              ' $formattedDate',
-              style: TextStyle(color: Colors.white70),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    ' $formattedDate',
+                    style: TextStyle(color: Colors.white70),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    weather.condition,
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Text(
+                        '${weather.temperature.round()}°C',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Min: ${weather.minTemp.round()}°C',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                          Text(
+                            'Max: ${weather.maxTemp.round()}°C',
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: 5),
-            Text(
-              weather.condition,
-              style: TextStyle(color: Colors.white, fontSize: 20),
+            // SizedBox(width: 20),
+            Lottie.asset(
+              getWeatherAnimation(weather.condition),
+              width: 100,
+              height: 100,
+              fit: BoxFit.fill,
             ),
-            SizedBox(height: 5),
-            Row(
-              children: [
-                Text(
-                  '${weather.temperature.round()}°C',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Min: ${weather.minTemp.round()}°C',
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                    Text(
-                      'Max: ${weather.maxTemp.round()}°C',
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
-            // Add more weather details as needed
           ],
         ),
       ),
     );
+  }
+
+  String getWeatherAnimation(String? mainCondition) {
+    if (mainCondition == null) return 'assets/sunny.json';
+
+    switch (mainCondition.toLowerCase()) {
+      case 'overcast clouds':
+      case 'clouds':
+      case 'mist':
+      case 'smoke':
+      case 'haze':
+      case 'dust':
+      case 'fog':
+        return 'assets/cloudy.json';
+      case 'rain':
+      case 'drizzle':
+      case 'shower rain':
+        return 'assets/rainy.json';
+      case 'thunderstorm':
+        return 'assets/thunder.json';
+      case 'clear':
+        return 'assets/sunny.json';
+      default:
+        return 'assets/sunny.json';
+    }
   }
 }
