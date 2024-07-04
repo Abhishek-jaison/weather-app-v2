@@ -8,7 +8,7 @@ run the application on your andriod emulator
 you are all set to go..
 
 
-<img src="https://github.com/Abhishek-jaison/weather-app-v2/assets/128037906/de27f3a9-6333-4d4d-97a2-9c6f82b66075" alt="Screenshot" width="400" height="800">
+<img src="https://github.com/Abhishek-jaison/weather-app-v2/assets/128037906/8bb14bef-a2a2-4a45-b6e5-5c3ae7c4ccb4" alt="Screenshot" width="400" height="800">
 
 
 ## Getting Started
