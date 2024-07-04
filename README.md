@@ -1,8 +1,10 @@
-# new_weather_app
+# weather_app v2
+a flutter app that is used to find the weather of a location based on the user search results.
 
 A new Flutter project.
 
 ## Getting Started
+
 
 This project is a starting point for a Flutter application.
 
