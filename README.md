@@ -3,7 +3,7 @@ a flutter app that is used to find the weather of a location based on the user s
 
 clone the REPO from git hub  
 run "flutter pub get" command on the terminal  
-int server_screen.dart replace "YOUR API KEY" with your actual apikey  
+in  /lib/services/weather_services.dart replace "YOUR API KEY" with your actual apikey  
 run the application on your andriod emulator  
 you are all set to go..
 
