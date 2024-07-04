@@ -1,14 +1,15 @@
 # weather_app v2
 a flutter app that is used to find the weather of a location based on the user search results.
 
-A new Flutter project.
+clone the REPO from git hub
+run "flutter pub get" command on the terminal
+run the application on your andriod emulator
+you are all set to go..
+
 
 ## Getting Started
 
-clone the REPO from git hub\n
-run "flutter pub get" command on the terminal
-run the application on your andriod emulator
-you are all set to go...
+.
 
 This project is a starting point for a Flutter application.
 
