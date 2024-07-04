@@ -5,7 +5,7 @@ A new Flutter project.
 
 ## Getting Started
 
-clone the REPO from git hub
+clone the REPO from git hub\n
 run "flutter pub get" command on the terminal
 run the application on your andriod emulator
 you are all set to go...
